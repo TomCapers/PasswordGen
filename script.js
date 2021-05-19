@@ -51,7 +51,7 @@ function userSelections() {
 
   // need to add an error message if no character groups are selected - this doesn't work
    if (useUpper, useLower, useNumber, useSpecial == false){
-     confirm("At least one class of characters must be chosen");
+     confirm("At least one class of characters must be chosen.");
    } return;
 
 }}
@@ -75,6 +75,7 @@ function selectionArray() {
     useSpecial == special;
   }
 // Return the concatenated selection array
+  var selArray = upperCase.concat(lowerCase, number, special);
 }
 
 
@@ -103,4 +104,4 @@ generateBtn.addEventListener("click", function(event) {
 event.preventDefault();
 userSelections();
 })
-//generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
