@@ -6,11 +6,10 @@ var number = [1,2,3,4,5,6,7,8,9,0];
 var special = ["!","@","$","%","&","?","<",">","(",")"];
 
 
-// Write password to the #password input
+// Prompt User Selections
 function userSelections() {
   var passLength;
-  
-  prompt("Please enter the length of the password");
+    prompt("Please enter the length of the password");
 
   if (passLength < 8) {
     prompt("Password must be at least 8 characters long");
@@ -22,7 +21,6 @@ function userSelections() {
 
   if (passLength !== null) {
     var useUpper;
-    
     confirm("Would you like to use uppercase letters?");
     if (useUpper == true) {
       console.log(useUpper);
@@ -40,23 +38,60 @@ function userSelections() {
     var useNumber;
     confirm("Would you like to use numbers?");
     if (useNumber == true) {
-      console.log(useLower);
+      console.log(useNumber);
     }
   }
 
   if (useNumber !== null) {
     var useSpecial = confirm("Would you like to use special characters?");
     if (useSpecial == true) {
-      console.log(useLower);
+      console.log(useSpecial);
     }
   } 
 
-  
+  // need to add an error message if no character groups are selected - this doesn't work
+   if (useUpper, useLower, useNumber, useSpecial == false){
+     confirm("At least one class of characters must be chosen");
+   } return;
 
 }}
 
+// Create Selection Array
+
+function selectionArray() {
+  if (useUpper == true){
+    useUpper = upperCase;
+  }
+
+  if (useLower == true){
+    useLower == lowerCase;
+  }
+
+  if (useNumber == true){
+    useNumber == number;
+  }
+
+  if (useSpecial == true){
+    useSpecial == special;
+  }
+// Return the concatenated selection array
+}
+
+
+//Generate Password
+
+function getPasswordCharacter() {
+  return characters[Math.floor(Math.random()*characters.length)]
+}
+
+// Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(passLength);{
+    for (var i = 0; i < passLength; passLength ++){
+      password = getPasswordCharacter();
+    }
+    return password;
+  }
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
