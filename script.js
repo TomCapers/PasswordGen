@@ -4,12 +4,17 @@ var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 var lowerCase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var number = [1,2,3,4,5,6,7,8,9,0];
 var special = ["!","@","$","%","&","?","<",">","(",")"];
-
+var passLength;
+var useUpper;
+var useLower;
+var useNumber;
+var useSpecial;
+var selArray;
+var password;
 
 // Prompt User Selections
 function userSelections() {
-  var passLength;
-    prompt("Please enter the length of the password");
+  passLength = prompt("Please enter the length of the password");
 
   if (passLength < 8) {
     prompt("Password must be at least 8 characters long");
@@ -20,30 +25,27 @@ function userSelections() {
   }
 
   if (passLength !== null) {
-    var useUpper;
-    confirm("Would you like to use uppercase letters?");
+    useUpper = confirm("Would you like to use uppercase letters?");
     if (useUpper == true) {
       console.log(useUpper);
     }
 
   if (useUpper !== null) {
-    var useLower;
-    confirm("Would you like to use uppercase letters?");
+    useLower = confirm("Would you like to use uppercase letters?");
     if (useLower == true) {
       console.log(useLower);
     }
   }
 
   if (useLower !== null) {
-    var useNumber;
-    confirm("Would you like to use numbers?");
+    useNumber = confirm("Would you like to use numbers?");
     if (useNumber == true) {
       console.log(useNumber);
     }
   }
 
   if (useNumber !== null) {
-    var useSpecial = confirm("Would you like to use special characters?");
+    useSpecial = confirm("Would you like to use special characters?");
     if (useSpecial == true) {
       console.log(useSpecial);
     }
@@ -59,49 +61,46 @@ function userSelections() {
 // Create Selection Array
 
 function selectionArray() {
-  if (useUpper == true){
-    useUpper = upperCase;
-  }
+  selArray = upperCase.concat(lowerCase, number, special);
 
-  if (useLower == true){
-    useLower == lowerCase;
-  }
 
-  if (useNumber == true){
-    useNumber == number;
-  }
 
-  if (useSpecial == true){
-    useSpecial == special;
-  }
+
 // Return the concatenated selection array
-  var selArray = upperCase.concat(lowerCase, number, special);
+
 }
 
 
 //Generate Password
 
-function getPasswordCharacter() {
-  return characters[Math.floor(Math.random()*characters.length)]
+function getPasswordCharacter(selArray) {
+  return (Math.floor(Math.random()*selArray.length));
 }
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword(passLength);{
+
+
+function generatePassword(passLength) {
+  
     for (var i = 0; i < passLength; passLength ++){
       password = getPasswordCharacter();
     }
-    return password;
-  }
+    
+}
+function writePassword() {
+ 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  }
+ 
 
-}
+
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", function(event) {
-event.preventDefault();
+generateBtn.addEventListener("click", function() {
 userSelections();
+selectionArray();
+generatePassword();
 })
 generateBtn.addEventListener("click", writePassword);
